@@ -175,6 +175,34 @@ class SplatData {
         return new SplatData(vertexCount, positions, rotations, scales, colors);
     }
 
+    getBoundingBox() {
+        let minX = Infinity,
+            minY = Infinity,
+            minZ = Infinity;
+        let maxX = -Infinity,
+            maxY = -Infinity,
+            maxZ = -Infinity;
+
+        for (let i = 0; i < this.vertexCount; i++) {
+            const x = this.positions[3 * i + 0];
+            const y = this.positions[3 * i + 1];
+            const z = this.positions[3 * i + 2];
+
+            minX = Math.min(minX, x);
+            minY = Math.min(minY, y);
+            minZ = Math.min(minZ, z);
+
+            maxX = Math.max(maxX, x);
+            maxY = Math.max(maxY, y);
+            maxZ = Math.max(maxZ, z);
+        }
+
+        return {
+            min: new Vector3(minX, minY, minZ),
+            max: new Vector3(maxX, maxY, maxZ),
+        };
+    }
+
     get vertexCount() {
         return this._vertexCount;
     }
