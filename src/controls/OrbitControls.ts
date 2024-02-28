@@ -101,6 +101,7 @@ class OrbitControls {
             lastX = e.clientX;
             lastY = e.clientY;
             window.addEventListener("mouseup", onMouseUp);
+            this.autoRotate = false;
         };
 
         const onMouseUp = (e: MouseEvent) => {
@@ -109,6 +110,7 @@ class OrbitControls {
             dragging = false;
             panning = false;
             window.removeEventListener("mouseup", onMouseUp);
+            this.autoRotate = true;
         };
 
         const onMouseMove = (e: MouseEvent) => {
@@ -167,6 +169,7 @@ class OrbitControls {
                 const distY = e.touches[0].clientY - e.touches[1].clientY;
                 lastDist = Math.sqrt(distX * distX + distY * distY);
             }
+            this.autoRotate = false;
         };
 
         const onTouchEnd = (e: TouchEvent) => {
@@ -174,6 +177,7 @@ class OrbitControls {
 
             dragging = false;
             panning = false;
+            this.autoRotate = true;
         };
 
         const onTouchMove = (e: TouchEvent) => {
