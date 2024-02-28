@@ -19,7 +19,7 @@ export class WebGLRenderer {
     render: (scene: Scene, camera: Camera) => void;
     dispose: () => void;
 
-    constructor(optionalCanvas: HTMLCanvasElement | null = null, optionalRenderPasses: ShaderPass[] | null = null) {
+    constructor(optionalCanvas: HTMLCanvasElement | null = null, optionalRenderPasses: ShaderPass[] | null = null, transparent: boolean = false) {
         const canvas: HTMLCanvasElement = optionalCanvas || document.createElement("canvas");
         if (!optionalCanvas) {
             canvas.style.display = "block";
@@ -33,7 +33,7 @@ export class WebGLRenderer {
         canvas.style.background = this._backgroundColor.toHexString();
         this._canvas = canvas;
 
-        this._gl = canvas.getContext("webgl2", { antialias: false }) as WebGL2RenderingContext;
+        this._gl = canvas.getContext("webgl2", { antialias: false, alpha: transparent }) as WebGL2RenderingContext;
 
         const renderPasses = optionalRenderPasses || [];
         if (!optionalRenderPasses) {

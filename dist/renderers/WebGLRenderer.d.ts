@@ -15,7 +15,7 @@ export declare class WebGLRenderer {
     setSize: (width: number, height: number) => void;
     render: (scene: Scene, camera: Camera) => void;
     dispose: () => void;
-    constructor(optionalCanvas?: HTMLCanvasElement | null, optionalRenderPasses?: ShaderPass[] | null);
+    constructor(optionalCanvas?: HTMLCanvasElement | null, optionalRenderPasses?: ShaderPass[] | null, transparent?: boolean);
     get canvas(): HTMLCanvasElement;
     get gl(): WebGL2RenderingContext;
     get renderProgram(): RenderProgram;
