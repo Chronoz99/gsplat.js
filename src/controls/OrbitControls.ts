@@ -15,6 +15,8 @@ class OrbitControls {
     setCameraTarget: (newTarget: Vector3) => void = () => {};
     update: () => void;
     dispose: () => void;
+    autoRotate: boolean;
+    autoRotateSpeed: number;
 
     constructor(
         camera: Camera,
@@ -37,6 +39,8 @@ class OrbitControls {
         let lastDist = 0;
         let lastX = 0;
         let lastY = 0;
+        this.autoRotate = false;
+        this.autoRotateSpeed = 0.01;
 
         const keys: { [key: string]: boolean } = {};
 
@@ -248,6 +252,11 @@ class OrbitControls {
             if (keys["KeyW"]) desiredTarget = desiredTarget.subtract(forward.multiply(moveSpeed));
             if (keys["KeyA"]) desiredTarget = desiredTarget.subtract(right.multiply(moveSpeed));
             if (keys["KeyD"]) desiredTarget = desiredTarget.add(right.multiply(moveSpeed));
+            
+
+            if(this.autoRotate) {
+                desiredAlpha += this.autoRotateSpeed;;
+            }
 
             // Add rotation with 'e' and 'q' for horizontal rotation
             if (keys["KeyE"]) desiredAlpha += rotateSpeed;
