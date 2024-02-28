@@ -1,4 +1,4 @@
-# gsplat.js
+# gsplat.js FORKED @chronoz99
 
 #### JavaScript Gaussian Splatting library
 
