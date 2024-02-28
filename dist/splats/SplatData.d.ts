@@ -17,6 +17,10 @@ declare class SplatData {
     reattach: (positions: ArrayBufferLike, rotations: ArrayBufferLike, scales: ArrayBufferLike, colors: ArrayBufferLike, selection: ArrayBufferLike) => void;
     constructor(vertexCount?: number, positions?: Float32Array | null, rotations?: Float32Array | null, scales?: Float32Array | null, colors?: Uint8Array | null);
     static Deserialize(data: Uint8Array): SplatData;
+    getBoundingBox(): {
+        min: Vector3;
+        max: Vector3;
+    };
     get vertexCount(): number;
     get positions(): Float32Array;
     get rotations(): Float32Array;
