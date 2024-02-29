@@ -14,6 +14,9 @@ declare class OrbitControls {
     dispose: () => void;
     autoRotate: boolean;
     autoRotateSpeed: number;
+    enablePan: boolean;
+    enableZoom: boolean;
+    enableRotate: boolean;
     constructor(camera: Camera, canvas: HTMLElement, alpha?: number, beta?: number, radius?: number, enableKeyboardControls?: boolean, inputTarget?: Vector3);
 }
 export { OrbitControls };

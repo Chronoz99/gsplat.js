@@ -17,6 +17,9 @@ class OrbitControls {
     dispose: () => void;
     autoRotate: boolean;
     autoRotateSpeed: number;
+    enablePan: boolean = true;
+    enableZoom: boolean = true;
+    enableRotate: boolean = true;
 
     constructor(
         camera: Camera,
@@ -121,7 +124,7 @@ class OrbitControls {
             const dx = e.clientX - lastX;
             const dy = e.clientY - lastY;
 
-            if (panning) {
+            if (panning && this.enablePan) {
                 const zoomNorm = computeZoomNorm();
                 const panX = -dx * this.panSpeed * 0.01 * zoomNorm;
                 const panY = -dy * this.panSpeed * 0.01 * zoomNorm;
@@ -185,7 +188,7 @@ class OrbitControls {
 
             if (!dragging || !camera) return;
 
-            if (panning) {
+            if (panning && this.enablePan) {
                 const zoomNorm = computeZoomNorm();
 
                 const distX = e.touches[0].clientX - e.touches[1].clientX;
